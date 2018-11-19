@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DB-2</title>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+<body>
+    <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo" style="margin-left: 1rem">DB-2</a>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a class="active" href="#table_">Table Data</a></li>
+        <li class="tab"><a href="#insert">Insert a Record</a></li>
+        <li class="tab"><a href="#select">Retrieve a Record</a></li>
+      </ul>
+    </div>
+   </nav>
+
+   <div id="table_" class="col s12">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">USERS</span>
+                        <div class="row">
+                          <table class="striped responsive-table">
+                            <thead>
+                              <tr>
+                                  <th>UID</th>
+                                  <th>UName</th>
+                                  <th>Name</th>
+                                  <th>Address</th>
+                                  <th>Phone No</th>
+                                  <th>RID</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user['UID'] }}</td>
+                                    <td>{{ user['UName'] }}</td>
+                                    <td>{{ user['Name'] }}</td>
+                                    <td>{{ user['Address'] }}</td>
+                                    <td>{{ user['PhoneNo'] }}</td>
+                                    <td>{{ user['RID'] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Role</span>
+                        <div class="row">
+                          <table class="striped responsive-table">
+                            <thead>
+                              <tr>
+                                  <th>RID</th>
+                                  <th>RName</th>
+                                  <th>Description</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for role in roles %}
+                                <tr>
+                                    <td>{{ role['RID'] }}</td>
+                                    <td>{{ role['RName'] }}</td>
+                                    <td>{{ role['Description'] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Privilege</span>
+                        <div class="row">
+                          <table class="striped responsive-table">
+                            <thead>
+                              <tr>
+                                  <th>PID</th>
+                                  <th>PName</th>
+                                  <th>Privilege Type</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for privilege in privileges %}
+                                <tr>
+                                    <td>{{ privilege['PID'] }}</td>
+                                    <td>{{ privilege['PName'] }}</td>
+                                    <td>{{ privilege['PrivilegeType'] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Access</span>
+                        <div class="row">
+                          <table class="striped responsive-table">
+                            <thead>
+                              <tr>
+                                  <th>RA ID</th>
+                                  <th>RID</th>
+                                  <th>TID</th>
+                                  <th>PID</th>
+                                  <th>Is Access</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for ac in access %}
+                                <tr>
+                                    <td>{{ ac['RA_ID'] }}</td>
+                                    <td>{{ ac['RID'] }}</td>
+                                    <td>{{ ac['TID'] }}</td>
+                                    <td>{{ ac['PID'] }}</td>
+                                    <td>{{ ac['IsAccess'] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Tables</span>
+                        <div class="row">
+                          <table class="striped responsive-table">
+                            <thead>
+                              <tr>
+                                  <th>TID</th>
+                                  <th>TName</th>
+                                  <th>UID</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for table in tables %}
+                                <tr>
+                                    <td>{{ table['TID'] }}</td>
+                                    <td>{{ table['TName'] }}</td>
+                                    <td>{{ table['UID'] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+        </div>
+   </div>
+
+   <div id="insert" class="col s12">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Insert a Record</span>
+
+                      <div class="row" id="user">
+                          <h6 class="center-align">Step 1: Create User </h6>
+                        <form class="col s12" onsubmit="user_submit()">
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="name" type="text" name="Name">
+                              <label for="name">Name</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="u-name" type="text" name="UName">
+                              <label for="u-name">Username</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="password" type="password" name="Password">
+                              <label for="password">Password</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="address" type="text" name="Address">
+                              <label for="address">Address</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="PhoneNo" type="text" name="PhoneNo">
+                              <label for="PhoneNo">Phone number</label>
+                            </div>
+                          </div>
+
+                            <div class="input-field col s12 center-align">
+                                <a class="waves-effect waves-light btn-large" onclick="user_submit()">Next</a>
+                            </div>
+                        </form>
+                      </div>
+
+                      <div class="row" id="role">
+                          <h6 class="center-align">Step 2: Create Role </h6>
+                        <form class="col s12" onsubmit="role_submit()">
+                          <div class="row">
+                            <div class="input-field col s12">
+                                <select name="RName" id="RName">
+                                        <option value="" disabled selected>Role Name</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Teaching">Teaching Staff</option>
+                                        <option value="NonTeaching">Non-Teaching Staff</option>
+                                </select>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="Description" type="text" name="Description">
+                              <label for="Description">Description</label>
+                            </div>
+                          </div>
+
+                            <div class="input-field col s12 center-align">
+                                <a class="waves-effect waves-light btn-large" onclick="role_submit()">Next</a>
+                            </div>
+                        </form>
+                      </div>
+
+                      <div class="row" id="table">
+                          <h6 class="center-align">Step 3: Create Table </h6>
+                        <form class="col s12" onsubmit="table_submit()">
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="Tname" type="text" name="TName">
+                              <label for="Tname">Table Name</label>
+                            </div>
+                          </div>
+
+                            <div class="input-field col s12 center-align">
+                                <a class="waves-effect waves-light btn-large" onclick="table_submit()">Submit</a>
+                            </div>
+                        </form>
+                      </div>
+
+                      <div class="row" id="privilege">
+                          <h6 class="center-align">Step 4: Create Privilege </h6>
+                        <form class="col s12" onsubmit="privilege_submit()">
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="PName" type="text" name="PName">
+                              <label for="PName">Privilege Name</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                                <select name="PrivilegeType" id="PrivilegeType">
+                                        <option value="" disabled selected>Privilege Type</option>
+                                        <option value="ACCOUNT">ACCOUNT Privilege</option>
+                                        <option value="RELATION">RELATION Privilege</option>
+                                </select>
+                            </div>
+                          </div>
+
+                            <div class="input-field col s12 center-align">
+                                <a class="waves-effect waves-light btn-large" onclick="privilege_submit()">Submit</a>
+                            </div>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+             </div>
+        </div>
+   </div>
+
+   <div id="select" class="col s12">
+        <div class="container">
+
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Get Privilege for a Role.</span>
+                        <form class="col s12" onsubmit="get_privilege_role()">
+                            <div class="row">
+                                <div class="input-field col s8">
+                                    <select name="select_role" id="select_role">
+                                            <option value="" disabled selected>Role Name</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Student">Student</option>
+                                            <option value="Teaching">Teaching Staff</option>
+                                            <option value="NonTeaching">Non-Teaching Staff</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-field col s4 center-align">
+                                    <a class="waves-effect waves-light btn-large" onclick="get_privilege_role()">Submit</a>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                          <table class="striped responsive-table">
+                            <thead>
+                              <tr>
+                                  <th>PID</th>
+                                  <th>PName</th>
+                                  <th>Privilege Type</th>
+                              </tr>
+                            </thead>
+                            <tbody id="privilege_role">
+                            <tr><td colspan="3"><h6 class='center-align grey-text text-darken-2'>
+                                Nothing to display.</h6></td></tr>
+                            </tbody>
+                          </table>
+                         </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Get Privilege for a User.</span>
+                        <form class="col s12" onsubmit="get_privilege_user()">
+                            <div class="row">
+                                <div class="input-field col s8">
+                                  <input id="set_UName" type="text" name="set_UName">
+                                  <label for="set_UName">Username</label>
+                                </div>
+
+                                <div class="input-field col s4 center-align">
+                                    <a class="waves-effect waves-light btn-large" onclick="get_privilege_user()">Submit</a>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                          <table class="striped responsive-table">
+                            <thead>
+                              <tr>
+                                  <th>PID</th>
+                                  <th>PName</th>
+                                  <th>Privilege Type</th>
+                              </tr>
+                            </thead>
+                            <tbody id="privilege_user">
+                            <tr><td colspan="3"><h6 class='center-align grey-text text-darken-2'>
+                                Nothing to display.</h6></td></tr>
+                            </tbody>
+                          </table>
+                         </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="col s12">
+                  <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Check Privilege for a User.</span>
+                        <form class="col s12" onsubmit="check_privilege_user()">
+                            <div class="row">
+                                <div class="input-field col s5">
+                                  <input id="select_UName" type="text" name="select_UName">
+                                  <label for="select_UName">Username</label>
+                                </div>
+                                <div class="input-field col s5">
+                                    <select name="set_PrivilegeType" id="set_PrivilegeType">
+                                            <option value="" disabled selected>Privilege Type</option>
+                                            <option value="ACCOUNT">ACCOUNT Privilege</option>
+                                            <option value="RELATION">RELATION Privilege</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s2 center-align">
+                                    <a class="waves-effect waves-light btn-large" onclick="check_privilege_user()">Submit</a>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="center-align" id="check_privilege_user"></div>
+                         </div>
+                    </div>
+                  </div>
+                </div>
+             </div>
+
+        </div>
+   </div>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/index.js') }}"></script>
+</body>
+</html>
